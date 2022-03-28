@@ -4,6 +4,7 @@ from config import *
 import logging
 import psycopg2
 from flask import Flask, request
+import user_states
 
 db_connection = psycopg2.connect(DB_URI, sslmode="require")
 db_object = db_connection.cursor()
@@ -26,15 +27,40 @@ def redirect_message():
 @bot.message_handler(commands=['start'])
 def _start(message):
     user_name = message.from_user.username
-    bot.reply_to(message, 'Hello, {}'.format(user_name))
+    start_message = f'Hello, {user_name}! You can add your places with /add command.\n' \
+                    f'Type /list to show 10 last places you added' \
+                    f'You can delete all your places with /reset command.' \
+                    f'Try typing /add <wanted address> to add your first place'
+    bot.reply_to(message, start_message)
 
 
+# When user types /add we send him to state 2 - ADD_ADDRESS and ask him to write address
 @bot.message_handler(commands=['add'])
-def _add(message):
+def _add_start(message):
+    # clear address global variable
+    user_states.ADDRESS = ''
+    bot.reply_to(message, "Write address that you want to save")
+    user_states.update_state(message, user_states.ADD_ADDRESS)
+
+
+# When user has written address we send him to state 3 - ADD_COMMENT, where we ask him to write comment
+@bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.ADD_ADDRESS)
+def _add_address(message):
+    user_states.ADDRESS = message.text
+    bot.reply_to(message, "Write comment (optional)")
+    user_states.update_state(message, user_states.ADD_COMMENT)
+
+
+# When comment has been written, we save data into our db and send user to starting state 1 - START
+@bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.ADD_COMMENT)
+def _add_comment(message):
     user_id = message.from_user.id
-    text = message.text
-    db_object.execute("INSERT INTO places(address, user_id) VALUES (%s, %s)", (text, user_id))
+    comment = message.text
+    db_object.execute("INSERT INTO places(address, comment, user_id) VALUES (%s, %s, %s)",
+                      (user_states.ADDRESS, comment, user_id))
     db_connection.commit()
+    bot.reply_to(message, "Successfully added!")
+    user_states.update_state(message, user_states.START)
 
 
 @bot.message_handler(commands=['list'])
@@ -48,7 +74,7 @@ def _list(message):
         reply = "Your added places:\n"
         for i, item in enumerate(result):
             reply += "[{}] Address: {}. Comment: {}".format(i+1, item[0], item[1])
-        bot.send_message(message.chat.id, str(result))
+        bot.send_message(message.chat.id, reply)
 
 
 @bot.message_handler(commands=['reset'])
@@ -56,6 +82,7 @@ def _reset(message):
     user_id = message.from_user.id
     db_object.execute("DELETE FROM places WHERE user_id = {}".format(user_id))
     db_connection.commit()
+    bot.reply_to(message, "All your saved addresses have been deleted!")
 
 
 if __name__ == "__main__":
