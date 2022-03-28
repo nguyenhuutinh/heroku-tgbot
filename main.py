@@ -24,7 +24,7 @@ def redirect_message():
     return "!", 200
 
 
-@bot.message_handler(commands=['start'])
+@bot.message_handler(commands=['start', 'help'])
 def _start(message):
     user_name = message.from_user.username
     start_message = f'Hello, {user_name}! You can add your places with /add command.\n' \
@@ -39,7 +39,7 @@ def _start(message):
 def _add_start(message):
     # clear address global variable
     user_states.ADDRESS = ''
-    bot.reply_to(message, "Write address that you want to save")
+    bot.send_message(message.chat.id, "Write address that you want to save")
     user_states.update_state(message, user_states.ADD_ADDRESS)
 
 
@@ -47,7 +47,7 @@ def _add_start(message):
 @bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.ADD_ADDRESS)
 def _add_address(message):
     user_states.ADDRESS = message.text
-    bot.reply_to(message, "Write comment (optional)")
+    bot.send_message(message.chat.id, "Write comment (optional)")
     user_states.update_state(message, user_states.ADD_COMMENT)
 
 
@@ -59,7 +59,7 @@ def _add_comment(message):
     db_object.execute("INSERT INTO places(address, comment, user_id) VALUES (%s, %s, %s)",
                       (user_states.ADDRESS, comment, user_id))
     db_connection.commit()
-    bot.reply_to(message, "Successfully added!")
+    bot.send_message(message.chat.id, "Successfully added!")
     user_states.update_state(message, user_states.START)
 
 
@@ -73,7 +73,7 @@ def _list(message):
     else:
         reply = "Your added places:\n"
         for i, item in enumerate(result):
-            reply += "[{}] Address: {}. Comment: {}".format(i+1, item[0], item[1])
+            reply += "[{}] Address: {}. Comment: {}\n".format(i+1, item[0], item[1])
         bot.send_message(message.chat.id, reply)
 
 
@@ -82,7 +82,7 @@ def _reset(message):
     user_id = message.from_user.id
     db_object.execute("DELETE FROM places WHERE user_id = {}".format(user_id))
     db_connection.commit()
-    bot.reply_to(message, "All your saved addresses have been deleted!")
+    bot.send_message(message.chat.id, "All your saved addresses have been deleted")
 
 
 if __name__ == "__main__":
