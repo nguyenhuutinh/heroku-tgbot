@@ -5,8 +5,8 @@ import logging
 import psycopg2
 from flask import Flask, request
 
-#db_connection = psycopg2.connection(DB_URI, sslmode="require")
-#db_object = db_connection.cursor()
+db_connection = psycopg2.connection(DB_URI, sslmode="require")
+db_object = db_connection.cursor()
 
 
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -33,30 +33,30 @@ def _start(message):
 def _add(message):
     user_id = message.from_user.id
     text = message.text
- #   db_object.execute("INSERT INTO places(address, user_id) VALUES (%s, %s)", (text, user_id))
- #   db_connection.commit()
+    db_object.execute("INSERT INTO places(address, user_id) VALUES (%s, %s)", (text, user_id))
+    db_connection.commit()
 
 
 @bot.message_handler(commands=['list'])
 def _list(message):
     user_id = message.from_user.id
     # Выведем все записи от user_id
-    #db_object.execute(f"SELECT address, comment FROM places WHERE user_id={user_id} ORDER BY place_id LIMIT 10")
-    #result = db_object.fetchall()
-    #if not result:
-    #    bot.send_message(message.chat.id, "Вы пока не добавили сохраненных мест")
-    #else:
-    #    reply = "Ваши сохраненные места:\n"
-    #    for i, item in enumerate(result):
-    #        reply += f"[{i+1}] Адрес: {item[0]}. Комментарий: {item[1]}"
-    #    bot.send_message(message.chat.id, str(result))
+    db_object.execute(f"SELECT address, comment FROM places WHERE user_id={user_id} ORDER BY place_id LIMIT 10")
+    result = db_object.fetchall()
+    if not result:
+        bot.send_message(message.chat.id, "Вы пока не добавили сохраненных мест")
+    else:
+        reply = "Ваши сохраненные места:\n"
+        for i, item in enumerate(result):
+            reply += f"[{i+1}] Адрес: {item[0]}. Комментарий: {item[1]}"
+        bot.send_message(message.chat.id, str(result))
 
 
 @bot.message_handler(commands=['reset'])
 def _reset(message):
     user_id = message.from_user.id
-    #db_object.execute(f"DELETE FROM places WHERE user_id = {user_id}")
-    #db_connection.commit()
+    db_object.execute(f"DELETE FROM places WHERE user_id = {user_id}")
+    db_connection.commit()
 
 
 if __name__ == "__main__":
