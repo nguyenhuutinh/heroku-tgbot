@@ -50,6 +50,7 @@ def _add_start(message):
 
 @bot.chat_member_handler()
 def chat_m(message: types.ChatMemberUpdated):
+    print("chat_mem", message)
     old = message.old_chat_member
     new = message.new_chat_member
     print(old)
