@@ -6,12 +6,15 @@ import psycopg2
 from flask import Flask, request
 import user_states
 
-db_connection = psycopg2.connect(DB_URI, sslmode="require")
+db_connection = psycopg2.connect("   postgres://imufmulnjjiqnt:829b20d89a1c04269a2acce443e9171042f4e40455fe99496be08fe54d2a2fee@ec2-54-160-109-68.compute-1.amazonaws.com:5432/dbp2nedqcukgic", sslmode="require")
 db_object = db_connection.cursor()
 
+BOT_TOKEN = "5697634365:AAEUgF96qD1wcXtxF5x1tXJSH5CjU18KAYM"
+APP_URL = "https://telegram-bot-check-name.herokuapp.com"
 
 bot = telebot.TeleBot(BOT_TOKEN)
 logger = telebot.logger
+
 logger.setLevel(logging.DEBUG)
 server = Flask(__name__)
 
