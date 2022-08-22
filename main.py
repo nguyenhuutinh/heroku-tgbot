@@ -80,6 +80,8 @@ def _add_address(message):
 @bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.ADD_COMMENT)
 def _add_comment(message):
     print(message)
+
+
 #     user_id = message.from_user.id
 #     comment = message.text
 #     db_object.execute("INSERT INTO places(address, comment, user_id) VALUES (%s, %s, %s)",
@@ -88,6 +90,11 @@ def _add_comment(message):
 #     bot.send_message(message.chat.id, "Successfully added!")
 #     user_states.update_state(message, user_states.START)
 
+
+
+@bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.START)
+def _all(message):
+    print(message)
 
 @bot.message_handler(commands=['list'])
 def _list(message):
