@@ -17,13 +17,8 @@ logger = telebot.logger
 
 logger.setLevel(logging.DEBUG)
 server = Flask(__name__)
+
 @server.route("/", methods=['POST'])
-def test():
-    redirect_message()
-
-
-
-@server.route("/{}".format(BOT_TOKEN), methods=['POST'])
 def redirect_message():
     print("start")
     json_string = request.get_data().decode('utf-8')
