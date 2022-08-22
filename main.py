@@ -22,21 +22,21 @@ server = Flask(__name__)
 @server.route("/{}".format(BOT_TOKEN), methods=['POST'])
 def redirect_message():
     print("start")
-#     json_string = request.get_data().decode('utf-8')
-#     update = telebot.types.Update.de_json(json_string)
-#     bot.process_new_updates([update])
-#     return "!", 200
+    json_string = request.get_data().decode('utf-8')
+    update = telebot.types.Update.de_json(json_string)
+    bot.process_new_updates([update])
+    return "!", 200
 
 
 @bot.message_handler(commands=['start', 'help'])
 def _start(message):
     print(message)
-#     user_name = message.from_user.username
-#     start_message = f'Hello, {user_name}! You can add your places with /add command.\n' \
-#                     f'Type /list to show 10 last places you added' \
-#                     f'You can delete all your places with /reset command.' \
-#                     f'Try typing /add <wanted address> to add your first place'
-#     bot.reply_to(message, start_message)
+    user_name = message.from_user.username
+    start_message = f'Hello, {user_name}! You can add your places with /add command.\n' \
+                    f'Type /list to show 10 last places you added' \
+                    f'You can delete all your places with /reset command.' \
+                    f'Try typing /add <wanted address> to add your first place'
+    bot.reply_to(message, start_message)
 
 
 # When user types /add we send him to state 2 - ADD_ADDRESS and ask him to write address
