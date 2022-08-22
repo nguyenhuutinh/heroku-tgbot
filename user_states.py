@@ -8,8 +8,8 @@ ADDRESS = ''
 
 
 def get_state(message):
-    return USER_STATE[message.chat.id]
+    return USER_STATE[x = message.chat.id]
 
 
 def update_state(message, state):
-    USER_STATE[message.chat.id] = state
+    USER_STATE[x = message.chat.id] = state
