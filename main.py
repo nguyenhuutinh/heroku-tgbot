@@ -26,7 +26,8 @@ class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
     def check(message: telebot.types.Message):
         return bot.get_chat_member(message.chat.id,message.from_user.id).status in ['administrator','creator']
 bot.add_custom_filter(IsAdmin())
-	
+admin = bot.get_chat_administrators()
+print(admin)
 @server.route("/", methods=['POST'])
 def redirect_message():
     print("start")
