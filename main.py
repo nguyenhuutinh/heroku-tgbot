@@ -47,6 +47,13 @@ def _add_start(message):
 #     bot.send_message(message.chat.id, "Write address that you want to save")
 #     user_states.update_state(message, user_states.ADD_ADDRESS)
 
+@bot.chat_member_handler()
+def chat_m(message: types.ChatMemberUpdated):
+    old = message.old_chat_member
+    new = message.new_chat_member
+    if new.status == "member":
+        bot.send_message(message.chat.id,"Hello {name}!".format(name=new.user.first_name)) # Welcome message
+
 
 # When user has written address we send him to state 3 - ADD_COMMENT, where we ask him to write comment
 @bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.ADD_ADDRESS)
