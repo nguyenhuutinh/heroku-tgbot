@@ -36,7 +36,7 @@ def _start(message):
                     f'Type /list to show 10 last places you added' \
                     f'You can delete all your places with /reset command.' \
                     f'Try typing /add <wanted address> to add your first place'
-    bot.reply_to(message, start_message)
+#     bot.reply_to(message, start_message)
 
 
 # When user types /add we send him to state 2 - ADD_ADDRESS and ask him to write address
@@ -55,8 +55,8 @@ def chat_m(message: types.ChatMemberUpdated):
     new = message.new_chat_member
     print(old)
     print(new)
-    if new.status == "member":
-        bot.send_message(message.chat.id,"Hello {name}!".format(name=new.user.first_name)) # Welcome message
+#     if new.status == "member":
+#         bot.send_message(message.chat.id,"Hello {name}!".format(name=new.user.first_name)) # Welcome message
 
 
 # When user has written address we send him to state 3 - ADD_COMMENT, where we ask him to write comment
