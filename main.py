@@ -19,7 +19,7 @@ logger.setLevel(logging.DEBUG)
 server = Flask(__name__)
 @server.route("/", methods=['POST'])
 def test():
-    return "OK", 200
+    redirect_message()
 
 
 
