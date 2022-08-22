@@ -51,6 +51,8 @@ def _add_start(message):
 def chat_m(message: types.ChatMemberUpdated):
     old = message.old_chat_member
     new = message.new_chat_member
+    print(old)
+    print(new)
     if new.status == "member":
         bot.send_message(message.chat.id,"Hello {name}!".format(name=new.user.first_name)) # Welcome message
 
