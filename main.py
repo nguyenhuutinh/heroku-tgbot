@@ -17,6 +17,10 @@ logger = telebot.logger
 
 logger.setLevel(logging.DEBUG)
 server = Flask(__name__)
+@server.route("/", methods=['GET'])
+def test():
+    return "OK", 200
+
 
 
 @server.route("/{}".format(BOT_TOKEN), methods=['POST'])
