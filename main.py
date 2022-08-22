@@ -19,6 +19,14 @@ logger = telebot.logger
 logger.setLevel(logging.DEBUG)
 server = Flask(__name__)
 
+class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
+    # Class will check whether the user is admin or creator in group or not
+    key='is_admin'
+    @staticmethod
+    def check(message: telebot.types.Message):
+        return bot.get_chat_member(message.chat.id,message.from_user.id).status in ['administrator','creator']
+bot.add_custom_filter(IsAdmin())
+	
 @server.route("/", methods=['POST'])
 def redirect_message():
     print("start")
@@ -110,3 +118,6 @@ if __name__ == "__main__":
     bot.remove_webhook()
     bot.set_webhook(url=APP_URL)
     server.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+    
+    
+
