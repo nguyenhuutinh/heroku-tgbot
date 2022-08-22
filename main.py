@@ -1,6 +1,6 @@
 import telebot
 import os
-from config import *
+# from config import *
 import logging
 import psycopg2
 from flask import Flask, request
