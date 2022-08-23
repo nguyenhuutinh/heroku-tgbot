@@ -129,7 +129,7 @@ def _list(message):
 ])
 def foo(message):
     # bot.reply_to(message, "welcome")
-    print(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+    print("WELCOME", message.from_user.first_name, message.from_user.last_name, message.from_user.username)
     firstName = message.from_user.first_name
     lastName = message.from_user.last_name
     username = message.from_user.username
