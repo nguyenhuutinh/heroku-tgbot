@@ -91,6 +91,9 @@ def _add_comment(message):
 #     bot.send_message(message.chat.id, "Successfully added!")
 #     user_states.update_state(message, user_states.START)
 
+@bot.message_handler(commands=['report'])
+def report(message):
+    bot.send_message(-643525876, "Reported" + message.text)
 
 @bot.message_handler(content_types=['photo'])
 def photo(message):
