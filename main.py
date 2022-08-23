@@ -134,13 +134,13 @@ def foo(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
-        bot.reply_to(message, ":exclamation: Dùng Tên Nick phạm quy :exclamation:")
+        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
         return
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
-        bot.reply_to(message, ":exclamation: Dùng Tên Nick phạm quy :exclamation:")
+        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
         return
     if username != None and "tccl" in username :
-        bot.reply_to(message, ":exclamation: Dùng Tên Nick phạm quy :exclamation:")
+        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
         return
 
 # @bot.message_handler(content_types=[
