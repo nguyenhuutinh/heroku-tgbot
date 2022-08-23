@@ -27,10 +27,10 @@ class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
         return bot.get_chat_member(message.chat.id,message.from_user.id).status in ['administrator','creator']
 bot.add_custom_filter(IsAdmin())
 admin = bot.get_chat_administrators(chat_id = '-727217256')
-print(admin)
+# print(admin)
 @server.route("/", methods=['POST'])
 def redirect_message():
-    print("start")
+    # print("start")
     json_string = request.get_data().decode('utf-8')
     update = telebot.types.Update.de_json(json_string)
     bot.process_new_updates([update])
@@ -59,7 +59,7 @@ def _add_start(message):
 
 @bot.chat_member_handler()
 def chat_m(message: types.ChatMemberUpdated):
-    print("chat_mem", message)
+    # print("chat_mem", message)
     old = message.old_chat_member
     new = message.new_chat_member
     print(old)
@@ -80,7 +80,7 @@ def _add_address(message):
 # When comment has been written, we save data into our db and send user to starting state 1 - START
 @bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.ADD_COMMENT)
 def _add_comment(message):
-    print("add_comment", message)
+    print("add_comment")
 
 
 #     user_id = message.from_user.id
@@ -95,7 +95,7 @@ def _add_comment(message):
 
 @bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
-    print("other",message)
+    print("other")
 
 @bot.message_handler(commands=['list'])
 def _list(message):
@@ -115,14 +115,15 @@ def _list(message):
     "new_chat_members"
 ])
 def foo(message):
-    bot.reply_to(message, "welcome")
+    # bot.reply_to(message, "welcome")
+    print(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
 
 
-@bot.message_handler(content_types=[
-    "left_chat_member"
-])
-def foo(message):
-    bot.reply_to(message, "bye bye")
+# @bot.message_handler(content_types=[
+#     "left_chat_member"
+# ])
+# def foo(message):
+#     bot.reply_to(message, "bye bye")
 
 @bot.message_handler(commands=['reset'])
 def _reset(message):
