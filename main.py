@@ -26,7 +26,7 @@ class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
     def check(message: telebot.types.Message):
         return bot.get_chat_member(message.chat.id,message.from_user.id).status in ['administrator','creator']
 bot.add_custom_filter(IsAdmin())
-admin = bot.get_chat_administrators(chat_id = '-727217256')
+# admin = bot.get_chat_administrators(chat_id = '-727217256')
 # print(admin)
 @server.route("/", methods=['POST'])
 def redirect_message():
@@ -95,7 +95,7 @@ def _add_comment(message):
 
 @bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
-    print("other")
+    print(message)
     print(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
 
 
