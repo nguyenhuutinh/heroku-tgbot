@@ -92,7 +92,23 @@ def _add_comment(message):
 #     user_states.update_state(message, user_states.START)
 
 
+@bot.message_handler(content_types=['photo'])
+def photo(message):
+    print ('message.photo =', message.photo)
+    firstName = message.from_user.first_name
+    lastName = message.from_user.last_name
+    username = message.from_user.username
+    if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
+        bot.reply_to(message, "/report")
+        return
+    if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
+        bot.reply_to(message, "/report")
+        return
+    if username != None and "tccl" in username :
+        bot.reply_to(message, "/report")
+        return
 
+        
 @bot.message_handler(is_admin=False, func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
     # print("other")
