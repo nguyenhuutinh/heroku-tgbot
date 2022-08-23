@@ -51,7 +51,7 @@ def _start(message):
 # When user types /add we send him to state 2 - ADD_ADDRESS and ask him to write address
 @bot.message_handler(commands=['add'])
 def _add_start(message):
-    print(message)
+    print( "add_start",message)
     # clear address global variable
 #     user_states.ADDRESS = ''
 #     bot.send_message(message.chat.id, "Write address that you want to save")
@@ -71,7 +71,7 @@ def chat_m(message: types.ChatMemberUpdated):
 # When user has written address we send him to state 3 - ADD_COMMENT, where we ask him to write comment
 @bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.ADD_ADDRESS)
 def _add_address(message):
-    print(message)
+    print("add_address", message)
 #     user_states.ADDRESS = message.text
 #     bot.send_message(message.chat.id, "Write comment (optional)")
 #     user_states.update_state(message, user_states.ADD_COMMENT)
@@ -80,7 +80,7 @@ def _add_address(message):
 # When comment has been written, we save data into our db and send user to starting state 1 - START
 @bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.ADD_COMMENT)
 def _add_comment(message):
-    print(message)
+    print("add_comment", message)
 
 
 #     user_id = message.from_user.id
@@ -95,7 +95,7 @@ def _add_comment(message):
 
 @bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
-    print(message)
+    print("other",message)
 
 @bot.message_handler(commands=['list'])
 def _list(message):
