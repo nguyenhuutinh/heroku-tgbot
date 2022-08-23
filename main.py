@@ -102,6 +102,8 @@ def _all(message):
     username = message.from_user.username
     if "TCCL Community" in firstName or "TCCL Community" in lastName:
         bot.reply_to(message, "/report")
+    if "TCCL" in firstName or "TCCL" in lastName:
+        bot.reply_to(message, "/report")
     if "tccl" in username :
         bot.reply_to(message, "/report")
 
