@@ -119,7 +119,7 @@ def foo(message):
 
 
 @bot.message_handler(content_types=[
-    "left_chat_members"
+    "left_chat_member"
 ])
 def foo(message):
     bot.reply_to(message, "bye bye")
