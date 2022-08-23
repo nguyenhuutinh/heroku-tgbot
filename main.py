@@ -96,6 +96,8 @@ def _add_comment(message):
 @bot.message_handler(func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
     print("other")
+    print(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
+
 
 @bot.message_handler(commands=['list'])
 def _list(message):
