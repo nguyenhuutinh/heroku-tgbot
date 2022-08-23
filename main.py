@@ -102,7 +102,7 @@ def _all(message):
     username = message.from_user.username
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
         bot.reply_to(message, "/report")
-    if "TCCL" in firstName or (lastName != None and  "TCCL" in lastName ):
+    if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
         bot.reply_to(message, "/report")
     if username != None and "tccl" in username :
         bot.reply_to(message, "/report")
