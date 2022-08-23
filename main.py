@@ -93,7 +93,9 @@ def _add_comment(message):
 
 @bot.message_handler(commands=['report'])
 def report(message):
-    bot.send_message(-643525876, "Reported" + message.text)
+    print ('reported', message)
+    firstName = message.from_user.first_name
+    bot.send_message(-643525876, firstName + " reported ")
 
 @bot.message_handler(content_types=['photo'])
 def photo(message):
