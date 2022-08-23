@@ -95,9 +95,15 @@ def _add_comment(message):
 
 @bot.message_handler(is_admin=False, func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
-    print("other")
+    # print("other")
     print(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
-
+    firstName = message.from_user.first_name
+    lastName = message.from_user.last_name
+    username = message.from_user.username
+    if "TCCL Community" in firstName or "TCCL Community" in lastName:
+        bot.reply_to(message, "/report")
+    if "tccl" in username :
+        bot.reply_to(message, "/report")
 
 @bot.message_handler(commands=['list'])
 def _list(message):
