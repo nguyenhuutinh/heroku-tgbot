@@ -100,11 +100,11 @@ def _all(message):
     firstName = message.from_user.first_name
     lastName = message.from_user.last_name
     username = message.from_user.username
-    if "TCCL Community" in firstName or "TCCL Community" in lastName:
+    if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
         bot.reply_to(message, "/report")
-    if "TCCL" in firstName or "TCCL" in lastName:
+    if "TCCL" in firstName or (lastName != None and  "TCCL" in lastName ):
         bot.reply_to(message, "/report")
-    if "tccl" in username :
+    if username != None and "tccl" in username :
         bot.reply_to(message, "/report")
 
 @bot.message_handler(commands=['list'])
