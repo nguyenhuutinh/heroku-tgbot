@@ -111,6 +111,11 @@ def _list(message):
 #             reply += "[{}] Address: {}. Comment: {}\n".format(i+1, item[0], item[1])
 #         bot.send_message(message.chat.id, reply)
 
+@bot.message_handler(content_types=[
+    "new_chat_members"
+])
+def foo(message):
+    bot.reply_to(message, "welcome")
 
 @bot.message_handler(commands=['reset'])
 def _reset(message):
