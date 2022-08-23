@@ -117,6 +117,13 @@ def _list(message):
 def foo(message):
     bot.reply_to(message, "welcome")
 
+
+@bot.message_handler(content_types=[
+    "left_chat_members"
+])
+def foo(message):
+    bot.reply_to(message, "bye bye")
+
 @bot.message_handler(commands=['reset'])
 def _reset(message):
     print(message)
