@@ -102,10 +102,13 @@ def _all(message):
     username = message.from_user.username
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
         bot.reply_to(message, "/report")
+        return
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
         bot.reply_to(message, "/report")
+        return
     if username != None and "tccl" in username :
         bot.reply_to(message, "/report")
+        return
 
 @bot.message_handler(commands=['list'])
 def _list(message):
