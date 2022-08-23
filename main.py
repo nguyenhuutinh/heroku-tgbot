@@ -94,7 +94,7 @@ def _add_comment(message):
 @bot.message_handler(commands=['report'])
 def report(message):
     print ('reported', message)
-    print(message.reply_to_message)
+    print(message.reply_to_message.from_user.first_name)
     firstName = message.from_user.first_name
     bot.send_message(-643525876, firstName + " reported ")
 
