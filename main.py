@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 import telebot
 import os
 # from config import *
@@ -100,7 +101,7 @@ def report(message):
 
 @bot.message_handler(content_types=['photo'])
 def photo(message):
-    print ('message.photo =', message.photo)
+    print ('message.photo', message)
     userId = message.from_user.id
 
     firstName = message.from_user.first_name
@@ -109,6 +110,8 @@ def photo(message):
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()) :
         bot.reply_to(message, "‼️ Dùng Tên Nick phạm quy ‼️")
         # bot.reply_to(message, "/report")
+        # bot.ban_chat_member(chat_id, userId, datetime.now() + timedelta(days=1))
+
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
         return
