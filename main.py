@@ -165,34 +165,36 @@ def _all(message):
 
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
         bot.reply_to(message, "‼️ " + firstName + " dùng tên phạm quy. Ra đảo 30 ngày ‼️")
-        # bot.reply_to(message, "/report")
+        bot.delete_message(chatId,message_id=message.id)
+
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=30))
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
         return
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
         bot.reply_to(message, "‼️ " + firstName + " dùng tên phạm quy. Ra đảo 30 ngày ‼️")
-        # bot.reply_to(message, "/report")
+        bot.delete_message(chatId,message_id=message.id)
+
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=30))
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
         return
     if username != None and "tccl" in username :
         bot.reply_to(message, "‼️ " + username + " dùng tên phạm quy. Ra đảo 30 ngày ‼️")
-        # bot.reply_to(message, "/report")
+        bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=30))
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - username: "+ username)
         return
     if "Đỗ Bảo".lower() in firstName.lower() or (lastName != None and "Đỗ Bảo".lower() in lastName.lower()) :
         bot.reply_to(message, "‼️ " + firstName + " dùng tên phạm quy. Ra đảo 30 ngày ‼️")
-        # bot.reply_to(message, "/report")
+        bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=30))
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
     if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
         bot.reply_to(message, "‼️ " + firstName + " dùng tên phạm quy. Ra đảo 30 ngày ‼️")
-        # bot.reply_to(message, "/report")
+        bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=30))
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
@@ -229,6 +231,7 @@ def foo(message):
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
         bot.reply_to(message, "‼️ " + username + " dùng tên phạm quy. Ra đảo 30 ngày ‼️")
         # bot.reply_to(message, "/report")
+        bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=30))
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
@@ -236,6 +239,7 @@ def foo(message):
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
         bot.reply_to(message, "‼️ " + username + " dùng tên phạm quy. Ra đảo 30 ngày ‼️")
         # bot.reply_to(message, "/report")
+        bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=30))
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
@@ -243,6 +247,7 @@ def foo(message):
     if username != None and "tccl" in username :
         bot.reply_to(message, "‼️ " + username + " dùng tên phạm quy. Ra đảo 30 ngày ‼️")
         # bot.reply_to(message, "/report")
+        bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=30))
         bot.send_message(-643525876, "Reported user id: " + userId + " - username: "+ username)
         return
