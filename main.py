@@ -104,10 +104,12 @@ def photo(message):
     print(message)
     userId = message.from_user.id
     chatId = message.chat.id
-    print ('message.photo', userId, chatId)
     firstName = message.from_user.first_name
     lastName = message.from_user.last_name
     username = message.from_user.username
+    print(userId, chatId, firstName, lastName, username)
+
+
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()) :
         bot.reply_to(message, "‼️ " + firstName + " dùng Tên Nick phạm quy. Ban 30 ngày ‼️")
         # bot.reply_to(message, "/report")
@@ -154,12 +156,13 @@ def photo(message):
 def _all(message):
     print("other", message)
     
-    print(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
     userId = message.from_user.id
     chatId = message.chat.id
     firstName = message.from_user.first_name
     lastName = message.from_user.last_name
     username = message.from_user.username
+    print(userId, chatId, firstName, lastName, username)
+
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
         bot.reply_to(message, "‼️ " + firstName + " dùng Tên Nick phạm quy. Ban 30 ngày ‼️")
         # bot.reply_to(message, "/report")
