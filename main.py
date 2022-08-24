@@ -135,7 +135,7 @@ def photo(message):
 
         return
 
-    if "Đỗ Bảo".lower() in firstName.lower() or (lastName != None and "Đỗ Bảo".lower() in lastName.lower()) :
+    if "Đỗ Bảo".lower() == firstName.lower() or (lastName != None and "Đỗ Bảo".lower() == lastName.lower()) :
         bot.reply_to(message, "‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️")
         # bot.reply_to(message, "/report")
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
@@ -186,7 +186,7 @@ def _all(message):
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - username: "+ username)
         return
-    if "Đỗ Bảo".lower() in firstName.lower() or (lastName != None and "Đỗ Bảo".lower() in lastName.lower()) :
+    if "Đỗ Bảo".lower() == firstName.lower() or (lastName != None and "Đỗ Bảo".lower() == lastName.lower()) :
         bot.reply_to(message, "👮‍♀️ ‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
