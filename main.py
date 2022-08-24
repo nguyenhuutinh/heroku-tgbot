@@ -169,6 +169,7 @@ def _all(message):
     username = message.from_user.username
     print(userId, chatId, firstName, lastName, username)
     if "anh em chưa vào nhóm".lower() in message.text:
+        bot.reply_to(message, "👮‍♀️ ‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:" + lastName)
