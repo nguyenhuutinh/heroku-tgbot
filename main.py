@@ -111,24 +111,26 @@ def photo(message):
 
 
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()) :
-        bot.reply_to(message, "‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️")
+        bot.reply_to(message, "👮‍♀️ ‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️ 👮‍♀️")
         # bot.reply_to(message, "/report")
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-
+        bot.delete_message(chatId,message_id=message.id)
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
         return
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
-        bot.reply_to(message, "‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 30 ngày ‼️")
+        bot.reply_to(message, "👮‍♀️ ‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️")
         # bot.reply_to(message, "/report")
+        bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
         return
     if username != None and "tccl" in username :
-        bot.reply_to(message, "‼️ " + username + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️")
+        bot.reply_to(message, "👮‍♀️ ‼️ " + username + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️ 👮‍♀️")
         # bot.reply_to(message, "/report")
+        bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - username: "+ username)
@@ -136,17 +138,21 @@ def photo(message):
         return
 
     if "Đỗ Bảo".lower() == firstName.lower() or (lastName != None and "Đỗ Bảo".lower() == lastName.lower()) :
-        bot.reply_to(message, "‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️")
+        bot.reply_to(message, "👮‍♀️ ‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️ 👮‍♀️")
         # bot.reply_to(message, "/report")
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
+        bot.delete_message(chatId,message_id=message.id)
+
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
         return
     if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
-        bot.reply_to(message, "‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️")
+        bot.reply_to(message, "👮‍♀️ ‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️  👮‍♀️")
         # bot.reply_to(message, "/report")
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
+        bot.delete_message(chatId,message_id=message.id)
+
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
