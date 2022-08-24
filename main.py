@@ -168,7 +168,11 @@ def _all(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print(userId, chatId, firstName, lastName, username)
-
+    if "anh em chưa vào nhóm".lower() in message.text:
+        bot.delete_message(chatId,message_id=message.id)
+        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
+        bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        return
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
         # bot.reply_to(message, "👮‍♀️ ‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
@@ -198,6 +202,7 @@ def _all(message):
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        return
     if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
         # bot.reply_to(message, "👮‍♀️ ‼️ " + firstName + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
