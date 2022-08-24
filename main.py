@@ -131,6 +131,13 @@ def photo(message):
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
         return
+    if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
+        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
+        bot.reply_to(message, "/report")
+        bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
+
+
+        return
 @bot.message_handler(is_admin=False, func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
     # print("other")
