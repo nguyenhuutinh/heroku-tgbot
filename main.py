@@ -101,10 +101,10 @@ def report(message):
 
 @bot.message_handler(content_types=['photo'])
 def photo(message):
-    print ('message.photo', message)
+    print(message)
     userId = message.from_user.id
     chatId = message.chat.id
-
+    print ('message.photo', userId, chatId)
     firstName = message.from_user.first_name
     lastName = message.from_user.last_name
     username = message.from_user.username
