@@ -106,7 +106,7 @@ def photo(message):
     firstName = message.from_user.first_name
     lastName = message.from_user.last_name
     username = message.from_user.username
-    if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
+    if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()) :
         bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
         bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
@@ -125,7 +125,12 @@ def photo(message):
 
         return
 
+    if "Đỗ Bảo".lower() in firstName.lower() or (lastName != None and "Đỗ Bảo".lower() in lastName.lower()) :
+        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
+        bot.reply_to(message, "/report")
+        bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
+        return
 @bot.message_handler(is_admin=False, func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
     # print("other")
