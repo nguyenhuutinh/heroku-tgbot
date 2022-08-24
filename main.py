@@ -166,7 +166,13 @@ def _all(message):
         bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
         bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
+    if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
+        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
+        bot.reply_to(message, "/report")
+        bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
+
+        return
 @bot.message_handler(commands=['list'])
 def _list(message):
     print("_list")  
