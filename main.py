@@ -107,33 +107,33 @@ def photo(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()) :
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
-        bot.reply_to(message, "/report")
+        bot.reply_to(message, "‼️ Dùng Tên Nick phạm quy ‼️")
+        # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
         return
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
-        bot.reply_to(message, "/report")
+        bot.reply_to(message, "‼️ Dùng Tên Nick phạm quy ‼️")
+        # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
         return
     if username != None and "tccl" in username :
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
-        bot.reply_to(message, "/report")
+        bot.reply_to(message, "‼️ Dùng Tên Nick phạm quy ‼️")
+        # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - username: "+ username)
 
         return
 
     if "Đỗ Bảo".lower() in firstName.lower() or (lastName != None and "Đỗ Bảo".lower() in lastName.lower()) :
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
-        bot.reply_to(message, "/report")
+        bot.reply_to(message, "‼️ Dùng Tên Nick phạm quy ‼️")
+        # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
         return
     if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
-        bot.reply_to(message, "/report")
+        bot.reply_to(message, "‼️ Dùng Tên Nick phạm quy ‼️")
+        # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
 
@@ -148,27 +148,27 @@ def _all(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
-        bot.reply_to(message, "/report")
+        bot.reply_to(message, "‼️ Dùng Tên phạm quy ‼️")
+        # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
         return
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
-        bot.reply_to(message, "/report")
+        bot.reply_to(message, "‼️ Dùng Tên phạm quy ‼️")
+        # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
         return
     if username != None and "tccl" in username :
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
-        bot.reply_to(message, "/report")
+        bot.reply_to(message, "‼️ Dùng Tên phạm quy ‼️")
+        # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - username: "+ username)
         return
     if "Đỗ Bảo".lower() in firstName.lower() or (lastName != None and "Đỗ Bảo".lower() in lastName.lower()) :
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
-        bot.reply_to(message, "/report")
+        bot.reply_to(message, "‼️ Dùng Tên Nick phạm quy ‼️")
+        # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
     if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
-        bot.reply_to(message, "/report")
+        bot.reply_to(message, "‼️ Dùng Tên Nick phạm quy ‼️")
+        # bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
 
@@ -199,19 +199,19 @@ def foo(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
+        bot.reply_to(message, "‼️ Dùng Nick phạm quy ‼️")
         bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
         return
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
+        bot.reply_to(message, "‼️ Dùng Nick phạm quy ‼️")
         bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
 
         return
     if username != None and "tccl" in username :
-        bot.reply_to(message, ":bangbang: Dùng Tên Nick phạm quy :bangbang:")
+        bot.reply_to(message, "‼️ Dùng Nick phạm quy ‼️")
         bot.reply_to(message, "/report")
         bot.send_message(-643525876, "Reported user id: " + userId + " - username: "+ username)
         return
