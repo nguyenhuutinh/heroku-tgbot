@@ -143,7 +143,7 @@ def photo(message):
         return
 @bot.message_handler(is_admin=False, func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
-    # print("other")
+    print("other", message)
     
     print(message.from_user.first_name, message.from_user.last_name, message.from_user.username)
     userId = message.from_user.id
