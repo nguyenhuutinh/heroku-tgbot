@@ -226,7 +226,7 @@ def _list(message):
 #             reply += "[{}] Address: {}. Comment: {}\n".format(i+1, item[0], item[1])
 #         bot.send_message(message.chat.id, reply)
 
-@bot.message_handler(is_admin=False, content_types=[
+@bot.message_handler( content_types=[
     "new_chat_members"
 ])
 def new_chat_members(message):
@@ -238,7 +238,10 @@ def new_chat_members(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print("WELCOME", userId, chatId, firstName, lastName, username)
-
+    if "Trung Kim Son".lower() in firstName.lower() or (lastName != None and "Trung Kim Son".lower() in lastName.lower()):
+        bot.delete_message(chatId,message_id=message.id)
+        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
+        bot.send_message(-643525876, "Reported user id: " + userId + " - firstName: "+ firstName + " - lastname:"+ lastName)
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
         # bot.reply_to(message, "👮‍♀️ ‼️ " + username + " sử dụng tên bị cấm. Ra đảo 1 ngày ‼️ 👮‍♀️")
         # bot.reply_to(message, "/report")
