@@ -103,9 +103,9 @@ def report(message):
         reportName = message.from_user.first_name
         bot.send_message("-643525876", f"{reportName} reported {name}" )
 
-@bot.message_handler(content_types=['photo'])
+@bot.message_handler(is_admin=False, content_types=['photo'])
 def photo(message):
-    print("photo")
+    print("photo", message.caption)
     moderate(message=message)
     
 
@@ -145,7 +145,7 @@ def processCheckAndBan(message):
     if "Bảo".lower() in f"{firstName}".lower() and lastName == None :
         return True
     return False
-    
+
 def banUser(message):
     userId = message.from_user.id
     chatId = message.chat.id
