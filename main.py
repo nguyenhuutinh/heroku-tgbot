@@ -27,11 +27,10 @@ class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
     def check(message: telebot.types.Message):
         return bot.get_chat_member(message.chat.id,message.from_user.id).status in ['administrator','creator']
 bot.add_custom_filter(IsAdmin())
-# admin = bot.get_chat_administrators(chat_id = '-727217256')
-# print(admin)
+
+
 @server.route("/", methods=['POST'])
 def redirect_message():
-    # print("start")
     json_string = request.get_data().decode('utf-8')
     print("json_string", json_string)
     update = telebot.types.Update.de_json(json_string)
@@ -39,14 +38,14 @@ def redirect_message():
     return "!", 200
 
 
-@bot.message_handler(commands=['start', 'help'])
-def _start(message):
+# @bot.message_handler(commands=['start', 'help'])
+# def _start(message):
     # print(message)
-    user_name = message.from_user.username
-    start_message = f'Hello, {user_name}! You can add your places with /add command.\n' \
-                    f'Type /list to show 10 last places you added' \
-                    f'You can delete all your places with /reset command.' \
-                    f'Try typing /add <wanted address> to add your first place'
+    # user_name = message.from_user.username
+    # start_message = f'Hello, {user_name}! You can add your places with /add command.\n' \
+    #                 f'Type /list to show 10 last places you added' \
+    #                 f'You can delete all your places with /reset command.' \
+    #                 f'Try typing /add <wanted address> to add your first place'
 #     bot.reply_to(message, start_message)
 
 
@@ -284,7 +283,7 @@ def banuser(message):
 #         for i, item in enumerate(result):
 #             reply += "[{}] Address: {}. Comment: {}\n".format(i+1, item[0], item[1])
 #         bot.send_message(message.chat.id, reply)
-@bot.message_handler(commands=['ban_bao'])
+@bot.message_handler(commands=['ban_bot'])
 def ban_bot(message):
     print(message)
     bot.ban_chat_member(-1001724937734, 136817688)
