@@ -94,7 +94,7 @@ def _add_comment(message):
 
 @bot.message_handler(commands=['report'])
 def report(message):
-    # print ('reported', message)
+    print ('reported', message)
     if message.reply_to_message:
         firstname = message.reply_to_message.from_user.first_name
         last_name = message.reply_to_message.from_user.last_name
@@ -292,7 +292,7 @@ def banuser(message):
 #         bot.send_message(message.chat.id, reply)
 @bot.message_handler(commands=['ban_bot'])
 def ban_bot(message):
-    print(message)
+    # print(message)
     bot.ban_chat_member(-1001724937734, 136817688)
     bot.send_message("-643525876", "Đã ban bot id: " + str(136817688) + f" {message.text}")
 
