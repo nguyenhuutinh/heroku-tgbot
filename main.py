@@ -177,14 +177,7 @@ def deleteMessage(message):
     "new_chat_members"
 ])
 def new_chat_members(message):
-    # bot.reply_to(message, "welcome")
-    userId = message.from_user.id
-    chatId = message.chat.id
-
-    firstName = message.from_user.first_name
-    lastName = message.from_user.last_name
-    username = message.from_user.username
-    print("WELCOME", userId, chatId, firstName, lastName, username)
+    print("WELCOME", message)
     
 
 @bot.message_handler(content_types=[
