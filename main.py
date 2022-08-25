@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 from re import M
 import telebot
-import os
 # from config import *
 import logging
 import psycopg2
@@ -13,13 +12,12 @@ db_connection = psycopg2.connect("postgres://imufmulnjjiqnt:829b20d89a1c04269a2a
 db_object = db_connection.cursor()
 
 BOT_TOKEN = "5697634365:AAEUgF96qD1wcXtxF5x1tXJSH5CjU18KAYM"
-APP_URL = "https://telegram-bot-check-name.herokuapp.com"
 
 bot = telebot.TeleBot(BOT_TOKEN)
 logger = telebot.logger
 
 logger.setLevel(logging.DEBUG)
-server = Flask(__name__)
+app = Flask(__name__)
 
 class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
     # Class will check whether the user is admin or creator in group or not
@@ -30,7 +28,7 @@ class IsAdmin(telebot.custom_filters.SimpleCustomFilter):
 bot.add_custom_filter(IsAdmin())
 
 
-@server.route("/", methods=['POST'])
+@app.route("/", methods=['POST'])
 def redirect_message():
     json_string = request.get_data().decode('utf-8')
     # print("json_string", json_string)
@@ -206,11 +204,7 @@ def _reset(message):
 #     bot.send_message(message.chat.id, "All your saved addresses have been deleted")
 
 
-if __name__ == "__main__":
-    print("start main")
-    bot.remove_webhook()
-    bot.set_webhook(url=APP_URL)
-    server.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
     
     
 
