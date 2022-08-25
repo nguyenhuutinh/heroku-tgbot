@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from re import M
 import telebot
 import os
 # from config import *
@@ -50,9 +51,9 @@ def redirect_message():
 
 
 # When user types /add we send him to state 2 - ADD_ADDRESS and ask him to write address
-@bot.message_handler(commands=['add'])
-def _add_start(message):
-    print( "add_start")
+# @bot.message_handler(commands=['add'])
+# def _add_start(message):
+#     print( "add_start")
     # clear address global variable
 #     user_states.ADDRESS = ''
 #     bot.send_message(message.chat.id, "Write address that you want to save")
@@ -60,11 +61,11 @@ def _add_start(message):
 
 @bot.chat_member_handler()
 def chat_m(message: types.ChatMemberUpdated):
-    # print("chat_mem", message)
+    print("chat_mem_change", message)
     old = message.old_chat_member
     new = message.new_chat_member
-    # print(old)
-    # print(new)
+    print(old)
+    print(new)
 #     if new.status == "member":
 #         bot.send_message(message.chat.id,"Hello {name}!".format(name=new.user.first_name)) # Welcome message
 
@@ -105,197 +106,70 @@ def report(message):
 @bot.message_handler(content_types=['photo'])
 def photo(message):
     print("photo")
-    userId = message.from_user.id
-    chatId = message.chat.id
-    firstName = message.from_user.first_name
-    lastName = message.from_user.last_name
-    username = message.from_user.username
-    print(userId, chatId, firstName, lastName, username, message.caption)
-    if (message.text != None and "follow us".lower() in message.text) or ( message.caption != None and "follow us".lower() in message.caption ):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
-    if (message.text != None and "futt + spot".lower() in message.text) or ( message.caption != None and "futt + spot".lower() in message.caption ):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
-    if (message.text != None and "anh em chưa vào nhóm".lower() in message.text) or ( message.caption != None and "anh em chưa vào nhóm".lower() in message.caption ):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:" + lastName)
-        return    
-    if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()) :
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        # bot.reply_to(message, "/report")
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.delete_message(chatId,message_id=message.id)
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
+    moderate(message=message)
+    
 
-        return
-    if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️")
-        # bot.reply_to(message, "/report")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-
-        return
-    if username != None and "tccl" in username or message.from_user.id == 5547260085:
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + username + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        # bot.reply_to(message, "/report")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - username: "+ username)
-
-        return
-
-    if "Đỗ Bảo".lower() == firstName.lower() or (lastName != None and "Đỗ Bảo".lower() == lastName.lower()) :
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        # bot.reply_to(message, "/report")
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.delete_message(chatId,message_id=message.id)
-
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-
-        return
-    if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️  👮‍♀️")
-        # bot.reply_to(message, "/report")
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.delete_message(chatId,message_id=message.id)
-
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-
-    fullname = f"{firstName} {lastName}"
-    if "Trade Coin Chiến Lược".lower() in fullname.lower():
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️  👮‍♀️")
-        # bot.reply_to(message, "/report")
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.delete_message(chatId,message_id=message.id)
-
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
 @bot.message_handler(is_admin=False, func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
     print("other", message.text)
+    moderate(message=message)
     
+
+def moderate(message):
+    if processCheckAndBan(message):
+        banUser(message)
+
+def processCheckAndBan(message):
     userId = message.from_user.id
     chatId = message.chat.id
     firstName = message.from_user.first_name
     lastName = message.from_user.last_name
     username = message.from_user.username
     print(userId, chatId, firstName, lastName, username, message.caption)
+    if ("follow us" in f"{message.text} {message.caption}".lower()):
+        return True
+    if "futt + spot" in f"{message.text} {message.caption}".lower():
+        return True
+    if "anh em chưa vào nhóm" in f"{message.text} {message.caption}".lower():
+        return True
+    if "TCCL Community".lower() in f"{firstName} {lastName}".lower() :
+        return True
+    if "TCCL".lower() in f"{firstName} {lastName}".lower() :
+        return True
+    if "tccl" in username:
+        return True
+    if "Đỗ Bảo".lower() in f"{firstName} {lastName}".lower() :
+        return True
+    if "Trade Coin Chiến Lược".lower() in f"{firstName} {lastName}".lower() :
+        return True
+    if "Bảo".lower() in f"{firstName}".lower() and lastName == None :
+        return True
+
+def banUser(message):
+    userId = message.from_user.id
+    chatId = message.chat.id
+    firstName = message.from_user.first_name
+    lastName = message.from_user.last_name
     
-    if (message.text != None and "Land of Conquest".lower() in message.text) or ( message.caption != None and "Land of Conquest".lower() in message.caption ):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
-    if (message.text != None and "follow us".lower() in message.text) or ( message.caption != None and "follow us".lower() in message.caption ):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
-    if (message.text != None and "futt + spot".lower() in message.text) or ( message.caption != None and "futt + spot".lower() in message.caption ):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
-    if (message.text != None and "anh em chưa vào nhóm".lower() in message.text) or ( message.caption != None and "anh em chưa vào nhóm".lower() in message.caption ):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
-    if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
+    bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
+    bot.delete_message(chatId,message_id=message.id)
+    bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
+    bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
 
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
-    if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
-    if username != None and "tccl" in username or message.from_user.id == 5547260085:
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + username + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - username: "+ username)
-        return
-    if "Đỗ Bảo".lower() == firstName.lower() or (lastName != None and "Đỗ Bảo".lower() == lastName.lower()) :
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
-    if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-
-
-        return
-
-    fullname = f"{firstName} {lastName}"
-    if "Trade Coin Chiến Lược".lower() in fullname.lower():
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️  👮‍♀️")
-        # bot.reply_to(message, "/report")
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.delete_message(chatId,message_id=message.id)
-
-        # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-        return
-@bot.message_handler(commands=['list'])
-def _list(message):
-    print("_list")  
-@bot.message_handler(commands=['ban_bao'])
-def banuser(message):
+# @bot.message_handler(commands=['list'])
+# def _list(message):
+#     print("_list")  
+@bot.message_handler(commands=['ban_user'])
+def banUser(message):
     print(message)
-    bot.ban_chat_member(-1001724937734, 5547260085)
-    bot.ban_chat_member(-1001724937734, 5640136487)
-    bot.ban_chat_member(-1001724937734, 5761077402)
-    bot.send_message("-643525876", "Đã ban user id: " + str(5547260085) + f" {message.text}")
-#     user_id = message.from_user.id
-#     db_object.execute("SELECT address, comment FROM places WHERE user_id={} ORDER BY place_id LIMIT 10".format(user_id))
-#     result = db_object.fetchall()
-#     if not result:
-#         bot.send_message(message.chat.id, "You didn't add any saved places")
-#     else:
-#         reply = "Your added places:\n"
-#         for i, item in enumerate(result):
-#             reply += "[{}] Address: {}. Comment: {}\n".format(i+1, item[0], item[1])
-#         bot.send_message(message.chat.id, reply)
-@bot.message_handler(commands=['ban_bot'])
-def ban_bot(message):
-    # print(message)
-    bot.ban_chat_member(-1001724937734, 136817688)
-    bot.send_message("-643525876", "Đã ban bot id: " + str(136817688) + f" {message.text}")
-
+    bot.ban_chat_member(-1001724937734, message.text)
+    bot.send_message("-643525876", "Đã ban user id: " + f" {message.text}")
+@bot.message_handler(commands=['delete_message'])
+def deleteMessage(message):
+    print(message)
+    bot.delete_message(-1001724937734, message.text)
+    bot.send_message("-643525876", "Đã Delete Message id: " + f" {message.text}")
+    
 @bot.message_handler( content_types=[
     "new_chat_members"
 ])
@@ -308,39 +182,19 @@ def new_chat_members(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print("WELCOME", userId, chatId, firstName, lastName, username)
-    if "Trung Kim Son".lower() in firstName.lower() or (lastName != None and "Trung Kim Son".lower() in lastName.lower()):
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
-    if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
-        # bot.reply_to(message, "👮‍♀️ ‼️ " + username + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
-        # bot.reply_to(message, "/report")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
+    
 
-        return
-    if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
-        # bot.reply_to(message, "👮‍♀️ ‼️ " + username + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️\n")
-        # bot.reply_to(message, "/report")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
+@bot.message_handler(content_types=[
+    "left_chat_member"
+])
+def foo(message):
+    userId = message.from_user.id
+    chatId = message.chat.id
 
-        return
-    if username != None and "tccl" in username :
-        # bot.reply_to(message, "👮‍♀️ ‼️ " + username + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️\n")
-        # bot.reply_to(message, "/report")
-        bot.delete_message(chatId,message_id=message.id)
-        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - username: "+ username)
-        return
-
-# @bot.message_handler(content_types=[
-#     "left_chat_member"
-# ])
-# def foo(message):
-#     bot.reply_to(message, "bye bye")
+    firstName = message.from_user.first_name
+    lastName = message.from_user.last_name
+    username = message.from_user.username
+    bot.send_message("-643525876", "User left : " + f" id {userId}  firstName {firstName} userName {username}")
 
 @bot.message_handler(commands=['reset'])
 def _reset(message):
