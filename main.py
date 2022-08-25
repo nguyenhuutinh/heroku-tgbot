@@ -107,7 +107,7 @@ def photo(message):
     moderate(message=message)
     
 
-@bot.message_handler(is_admin=False, func=lambda message: user_states.get_state(message) == user_states.START)
+@bot.message_handler(is_admin=False)
 def _all(message):
     print("other", message.text)
     moderate(message=message)
