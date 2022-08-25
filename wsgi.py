@@ -1,6 +1,6 @@
 
-from app.main import app
-from app.main import bot
+from main import app
+from main import bot
 
 import os
 
