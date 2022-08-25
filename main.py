@@ -126,7 +126,7 @@ def processCheckAndBan(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print(userId, chatId, firstName, lastName, username, message.caption)
-    if ("follow us" in f"{message.text} {message.caption}".lower()):
+    if "follow us" in f"{message.text} {message.caption}".lower():
         return True
     if "futt + spot" in f"{message.text} {message.caption}".lower():
         return True
@@ -144,7 +144,8 @@ def processCheckAndBan(message):
         return True
     if "Bảo".lower() in f"{firstName}".lower() and lastName == None :
         return True
-
+    return False
+    
 def banUser(message):
     userId = message.from_user.id
     chatId = message.chat.id
