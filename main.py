@@ -180,6 +180,7 @@ def _all(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print(userId, chatId, firstName, lastName, username)
+
     if (message.text != None and "anh em chưa vào nhóm".lower() in message.text) or ( message.caption != None and "anh em chưa vào nhóm".lower() in message.caption ):
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
@@ -202,7 +203,7 @@ def _all(message):
         # bot.reply_to(message, "/report")
         bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
         return
-    if username != None and "tccl" in username :
+    if username != None and "tccl" in username or message.from_user.id == 5547260085:
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + username + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
