@@ -94,7 +94,7 @@ def _add_comment(message):
 
 @bot.message_handler(commands=['report'])
 def report(message):
-    print ('reported', message)
+    # print ('reported', message)
     if message.reply_to_message:
         firstname = message.reply_to_message.from_user.first_name
         last_name = message.reply_to_message.from_user.last_name
@@ -104,7 +104,7 @@ def report(message):
 
 @bot.message_handler(content_types=['photo'])
 def photo(message):
-    print("photo",message)
+    # print("photo",message)
     userId = message.from_user.id
     chatId = message.chat.id
     firstName = message.from_user.first_name
