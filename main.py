@@ -180,6 +180,14 @@ def new_chat_members(message):
     print("WELCOME", message)
     
 
+@bot.message_handler(commands=['unban_user'])
+def unban_user(message):
+    userId = message.text.replace("/unban_user ", "")
+    bot.unban_chat_member(-1001724937734, userId)
+    bot.send_message("-643525876", "Đã Mở " + f" {userId}")
+
+
+
 @bot.message_handler(content_types=[
     "left_chat_member"
 ])
