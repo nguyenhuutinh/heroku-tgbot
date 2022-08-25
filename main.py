@@ -163,6 +163,8 @@ def banUser(message):
     print(message)
     userId = message.text.replace("/ban_user ", "")
     bot.ban_chat_member(-1001724937734, userId)
+    bot.kick_chat_member(chat_id =-1001724937734,user_id=userId)
+
     bot.send_message("-643525876", "Đã ban user id: " + f" {userId}")
 @bot.message_handler(commands=['delete_message'])
 def deleteMessage(message):
