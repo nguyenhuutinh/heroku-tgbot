@@ -182,7 +182,7 @@ def _all(message):
     print(userId, chatId, firstName, lastName, username)
 
     if (message.text != None and "anh em chưa vào nhóm".lower() in message.text) or ( message.caption != None and "anh em chưa vào nhóm".lower() in message.caption ):
-        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
+        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:" + lastName)
