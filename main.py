@@ -96,9 +96,12 @@ def _add_comment(message):
 @bot.message_handler(commands=['report'])
 def report(message):
     print ('reported', message)
-    name = message.reply_to_message.from_user.first_name + " " + message.reply_to_message.from_user.last_name
-    firstName = message.from_user.first_name
-    bot.send_message("-643525876", firstName + " reported " + name )
+    if message.reply_to_message:
+        firstname = message.reply_to_message.from_user.first_name
+        last_name = message.reply_to_message.from_user.last_name
+        name =  f" {firstname} {last_name}"
+        reportName = message.from_user.first_name
+        bot.send_message("-643525876", f"{reportName} reported {name}" )
 
 @bot.message_handler(content_types=['photo'])
 def photo(message):
@@ -169,7 +172,7 @@ def _all(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print(userId, chatId, firstName, lastName, username)
-    if "anh em chưa vào nhóm".lower() in message.text:
+    if "anh em chưa vào nhóm".lower() in message.text or "anh em chưa vào nhóm".lower() in message.caption:
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
