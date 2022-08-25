@@ -141,7 +141,7 @@ def photo(message):
         bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
 
         return
-    if username != None and "tccl" in username :
+    if username != None and "tccl" in username or message.from_user.id == 5547260085:
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + username + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         # bot.reply_to(message, "/report")
         bot.delete_message(chatId,message_id=message.id)
