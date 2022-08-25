@@ -159,7 +159,7 @@ def banUser(message):
 # def _list(message):
 #     print("_list")  
 @bot.message_handler(commands=['ban_user'])
-def banUser(message):
+def manualbanUser(message):
     print(message)
     userId = message.text.replace("/ban_user ", "")
     bot.ban_chat_member(-1001724937734, userId)
