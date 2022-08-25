@@ -187,7 +187,7 @@ def photo(message):
         return
 @bot.message_handler(is_admin=False, func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
-    print("other")
+    print("other", message.text)
     
     userId = message.from_user.id
     chatId = message.chat.id
