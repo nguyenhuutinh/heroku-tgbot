@@ -112,12 +112,18 @@ def photo(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print(userId, chatId, firstName, lastName, username, message.caption)
-
+    if (message.text != None and "follow us".lower() in message.text) or ( message.caption != None and "follow us".lower() in message.caption ):
+        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
+        bot.delete_message(chatId,message_id=message.id)
+        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
+        return
     if (message.text != None and "futt + spot".lower() in message.text) or ( message.caption != None and "futt + spot".lower() in message.caption ):
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
+        return
     if (message.text != None and "anh em chưa vào nhóm".lower() in message.text) or ( message.caption != None and "anh em chưa vào nhóm".lower() in message.caption ):
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
@@ -190,11 +196,18 @@ def _all(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print(userId, chatId, firstName, lastName, username, message.caption)
+    if (message.text != None and "follow us".lower() in message.text) or ( message.caption != None and "follow us".lower() in message.caption ):
+        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
+        bot.delete_message(chatId,message_id=message.id)
+        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
+        return
     if (message.text != None and "futt + spot".lower() in message.text) or ( message.caption != None and "futt + spot".lower() in message.caption ):
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
+        return
     if (message.text != None and "anh em chưa vào nhóm".lower() in message.text) or ( message.caption != None and "anh em chưa vào nhóm".lower() in message.caption ):
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
