@@ -166,8 +166,9 @@ def banUser(message):
 @bot.message_handler(commands=['delete_message'])
 def deleteMessage(message):
     print(message)
-    bot.delete_message(-1001724937734, message.text)
-    bot.send_message("-643525876", "Đã Delete Message id: " + f" {message.text}")
+    message_id = message.text.replace("/delete_message ", "")
+    bot.delete_message(-1001724937734, message_id)
+    bot.send_message("-643525876", "Đã Delete Message id: " + f" {message_id}")
     
 @bot.message_handler( content_types=[
     "new_chat_members"
