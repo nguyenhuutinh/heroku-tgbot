@@ -119,7 +119,7 @@ def photo(message):
         # bot.reply_to(message, "/report")
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         bot.delete_message(chatId,message_id=message.id)
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
 
         return
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
@@ -128,7 +128,7 @@ def photo(message):
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
 
         return
     if username != None and "tccl" in username :
@@ -148,7 +148,7 @@ def photo(message):
         bot.delete_message(chatId,message_id=message.id)
 
         # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
 
         return
     if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
@@ -158,9 +158,17 @@ def photo(message):
         bot.delete_message(chatId,message_id=message.id)
 
         # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
 
+    fullname = f"{firstName} {lastName}"
+    if "Trade Coin Chiến Lược".lower() in fullname.lower():
+        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️  👮‍♀️")
+        # bot.reply_to(message, "/report")
+        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
+        bot.delete_message(chatId,message_id=message.id)
 
+        # bot.reply_to(message, "/report")
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
         return
 @bot.message_handler(is_admin=False, func=lambda message: user_states.get_state(message) == user_states.START)
 def _all(message):
@@ -184,7 +192,7 @@ def _all(message):
 
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
         return
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
@@ -192,7 +200,7 @@ def _all(message):
 
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
         return
     if username != None and "tccl" in username :
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + username + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
@@ -206,16 +214,27 @@ def _all(message):
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
         return
     if "Trade Coin Chiến Lược".lower() in firstName.lower() or (lastName != None and "Trade Coin Chiến Lược".lower() in lastName.lower()) :
         bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
         # bot.reply_to(message, "/report")
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
 
 
+        return
+
+    fullname = f"{firstName} {lastName}"
+    if "Trade Coin Chiến Lược".lower() in fullname.lower():
+        bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️  👮‍♀️")
+        # bot.reply_to(message, "/report")
+        bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
+        bot.delete_message(chatId,message_id=message.id)
+
+        # bot.reply_to(message, "/report")
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
         return
 @bot.message_handler(commands=['list'])
 def _list(message):
@@ -246,13 +265,13 @@ def new_chat_members(message):
     if "Trung Kim Son".lower() in firstName.lower() or (lastName != None and "Trung Kim Son".lower() in lastName.lower()):
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
     if "TCCL Community".lower() in firstName.lower() or (lastName != None and "TCCL Community".lower() in lastName.lower()):
         # bot.reply_to(message, "👮‍♀️ ‼️ " + username + " sử dụng tên bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
         # bot.reply_to(message, "/report")
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
 
         return
     if "TCCL".lower()  in firstName.lower()  or (lastName != None and  "TCCL".lower()  in lastName.lower()  ):
@@ -260,7 +279,7 @@ def new_chat_members(message):
         # bot.reply_to(message, "/report")
         bot.delete_message(chatId,message_id=message.id)
         bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
-        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ firstName + " - lastname:"+ lastName)
+        bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
 
         return
     if username != None and "tccl" in username :
