@@ -257,6 +257,8 @@ def _list(message):
 @bot.message_handler(commands=['ban_bao'])
 def banuser(message):
     bot.ban_chat_member(-1001724937734, 5547260085)
+    bot.ban_chat_member(-1001724937734, 5640136487)
+    bot.ban_chat_member(-1001724937734, 5761077402)
     bot.send_message("-643525876", "Đã ban user id: " + str(5547260085))
 #     user_id = message.from_user.id
 #     db_object.execute("SELECT address, comment FROM places WHERE user_id={} ORDER BY place_id LIMIT 10".format(user_id))
