@@ -148,6 +148,10 @@ def processCheckAndBan(message):
         return True
     if "Trade".lower() in f"{firstName} {lastName}".lower() and  "Chiến Lược".lower() in f"{firstName} {lastName}".lower():
         return True
+    if "Trade".lower() in f"{firstName} {lastName}".lower() and  "Lược".lower() in f"{firstName} {lastName}".lower():
+        return True
+    if "Trade".lower() in f"{firstName} {lastName}".lower() and  "Iược".lower() in f"{firstName} {lastName}".lower():
+        return True
     if "Bảo".lower() in f"{firstName}".lower() and lastName == None :
         return True
     return False
