@@ -158,9 +158,9 @@ def banUser(message):
     firstName = message.from_user.first_name
     lastName = message.from_user.last_name
     
-    bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch 1 ngày ‼️ 👮‍♀️")
+    bot.reply_to(message, "👮‍♀️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch dài ngày ‼️ 👮‍♀️")
     bot.delete_message(chatId,message_id=message.id)
-    bot.ban_chat_member(chatId, userId, datetime.now() + timedelta(days=1))
+    bot.ban_chat_member(chatId, userId)
     bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}")
 
 # @bot.message_handler(commands=['list'])
