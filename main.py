@@ -97,9 +97,11 @@ def report(message):
     if message.reply_to_message:
         firstname = message.reply_to_message.from_user.first_name
         last_name = message.reply_to_message.from_user.last_name
+        uid = message.reply_to_message.from_user.id
+        mess = message.reply_to_message.text
         name =  f" {firstname} {last_name}"
         reportName = message.from_user.first_name
-        bot.send_message("-643525876", f"{reportName} reported {name}" )
+        bot.send_message("-643525876", f"{reportName} reported {uid} - {name}:  mess :{mess}" )
 
 @bot.message_handler(content_types=['photo'])
 def photo(message):
@@ -129,6 +131,7 @@ def checkAndDeleteMessage(message):
 
 def deleteMessage(message):
     bot.delete_message(message.chat.id,message_id=message.id)
+    bot.send_message("-643525876", f"deleted message {message.text}" )
 
 def processCheckAndBan(message):
     userId = message.from_user.id
