@@ -116,6 +116,17 @@ def _all(message):
 def moderate(message):
     if processCheckAndBan(message):
         banUser(message)
+    if checkAndDeleteMessage(message):
+        deleteMessage()
+        
+def checkAndDeleteMessage(message):
+    if "follow us" in f"{message.text} {message.caption}".lower():
+        return True
+    if "rewards distribution" in f"{message.text} {message.caption}".lower():
+        return True
+
+def deleteMessage(message):
+    bot.delete_message(message.chat.id,message_id=message.id)
 
 def processCheckAndBan(message):
     userId = message.from_user.id
@@ -124,8 +135,7 @@ def processCheckAndBan(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print(f"{message.text} {message.caption} - {firstName} {lastName} {userId} {chatId} ".lower())
-    if "follow us" in f"{message.text} {message.caption}".lower():
-        return True
+    
     if "futt + spot" in f"{message.text} {message.caption}".lower():
         return True
     if "fut" in f"{message.text} {message.caption}".lower() and "spot" in f"{message.text} {message.caption}".lower():
