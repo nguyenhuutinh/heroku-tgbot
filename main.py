@@ -175,7 +175,7 @@ def banUser(message):
     bot.reply_to(message, "🧞‍♂️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch không hẹn ngày về ‼️ 🧞‍♂️")
     bot.delete_message(chatId,message_id=message.id)
     bot.ban_chat_member(chatId, userId)
-    bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}" + f"{message.text}" + f"{message.caption}")
+    bot.send_message("-643525876", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}" + f" - message: {message.text} " + f" - caption: {message.caption}")
 
 # @bot.message_handler(commands=['list'])
 # def _list(message):
