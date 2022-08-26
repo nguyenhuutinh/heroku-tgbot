@@ -120,6 +120,8 @@ def moderate(message):
         deleteMessage()
 
 def checkAndDeleteMessage(message):
+    if "land of conquest"  in f"{message.text} {message.caption}".lower():
+        return True
     if "follow us" in f"{message.text} {message.caption}".lower():
         return True
     if "rewards distribution" in f"{message.text} {message.caption}".lower():
