@@ -99,9 +99,10 @@ def report(message):
         last_name = message.reply_to_message.from_user.last_name
         uid = message.reply_to_message.from_user.id
         mess = message.reply_to_message.text
+        messId = message.reply_to_message.id
         name =  f" {firstname} {last_name}"
         reportName = message.from_user.first_name
-        bot.send_message("-643525876", f"{reportName} reported {uid} - {name}:  mess :{mess}" )
+        bot.send_message("-643525876", f"{reportName} reported {uid} - {name}:  mess :{messId} {mess}" )
 
 @bot.message_handler(content_types=['photo'])
 def photo(message):
