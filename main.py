@@ -130,7 +130,7 @@ def processCheckAndBan(message):
         return True
     if "fut" in f"{message.text} {message.caption}".lower() and "spot" in f"{message.text} {message.caption}".lower():
         return True
-    if "anh em chưa vào nhóm" in f"{message.text} {message.caption}".lower():
+    if "anh em" in f"{message.text} {message.caption}".lower() and  "vào nhóm" in f"{message.text} {message.caption}".lower() :
         return True
     if "TCCL Community".lower() in f"{firstName} {lastName}".lower() :
         return True
