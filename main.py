@@ -129,9 +129,8 @@ def checkAndDeleteMessage(message):
         return True
     if "rewards distribution" in f"{message.text} {message.caption}".lower():
         return True
-    if "NhómVIP".lower() in f"{message.text} {message.caption}".lower():
-        return True
-        
+    
+
 def deleteMessage(message):
     bot.delete_message(message.chat.id,message_id=message.id)
     bot.send_message("-643525876", f"deleted message {message.text}" )
@@ -143,7 +142,8 @@ def processCheckAndBan(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print(f"{message.text} {message.caption} - {firstName} {lastName} {userId} {chatId} ".lower())
-    
+    if "NhómVIP".lower() in f"{message.text} {message.caption}".lower():
+        return True
     if "futt + spot" in f"{message.text} {message.caption}".lower():
         return True
     if "fut" in f"{message.text} {message.caption}".lower() and "spot" in f"{message.text} {message.caption}".lower():
