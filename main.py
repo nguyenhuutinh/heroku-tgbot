@@ -143,7 +143,7 @@ def processCheckAndBan(message):
     lastName = message.from_user.last_name
     username = message.from_user.username
     print(f"{message.text} {message.caption} - {firstName} {lastName} {userId} {chatId} ".lower())
-    if "NhómVIP".lower() in f"{message.text} {message.caption}".lower():
+    if "NhómVIP".lower() in f"{message.text} {message.caption}".lower() or "ai chưa tham gia" in f"{message.text} {message.caption}".lower():
         return True
     if "futt + spot" in f"{message.text} {message.caption}".lower():
         return True
