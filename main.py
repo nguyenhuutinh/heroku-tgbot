@@ -120,7 +120,7 @@ def moderate(message):
     if processCheckAndBan(message):
         banUser(message)
     if checkAndDeleteMessage(message):
-        deleteMessage()
+        deleteMessage(message)
 
 def checkAndDeleteMessage(message):
     if "land of conquest"  in f"{message.text} {message.caption}".lower():
