@@ -129,7 +129,8 @@ def checkAndDeleteMessage(message):
         return True
     if "rewards distribution" in f"{message.text} {message.caption}".lower():
         return True
-    
+    if "fut" in f"{message.text} {message.caption}".lower() and "spot" in f"{message.text} {message.caption}".lower():
+        return True
 
 def deleteMessage(message):
     print(message)
@@ -148,8 +149,7 @@ def processCheckAndBan(message):
         return True
     if "futt + spot" in f"{message.text} {message.caption}".lower():
         return True
-    if "fut" in f"{message.text} {message.caption}".lower() and "spot" in f"{message.text} {message.caption}".lower():
-        return True
+    
     if "anh em" in f"{message.text} {message.caption}".lower() and  "vào nhóm" in f"{message.text} {message.caption}".lower() :
         return True
     if "TCCL Community".lower() in f"{firstName} {lastName}".lower() :
