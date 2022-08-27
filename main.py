@@ -129,7 +129,9 @@ def checkAndDeleteMessage(message):
         return True
     if "rewards distribution" in f"{message.text} {message.caption}".lower():
         return True
-
+    if "NhómVIP".lower() in f"{message.text} {message.caption}".lower():
+        return True
+        
 def deleteMessage(message):
     bot.delete_message(message.chat.id,message_id=message.id)
     bot.send_message("-643525876", f"deleted message {message.text}" )
