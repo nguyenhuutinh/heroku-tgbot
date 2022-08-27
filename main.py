@@ -132,6 +132,7 @@ def checkAndDeleteMessage(message):
     
 
 def deleteMessage(message):
+    print(message)
     bot.delete_message(message.chat.id,message_id=message.id)
     bot.send_message("-643525876", f"deleted message {message.text}" )
 
