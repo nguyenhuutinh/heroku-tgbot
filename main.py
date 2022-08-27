@@ -144,7 +144,7 @@ def processCheckAndBan(message):
     username = message.from_user.username
     print(f"{message.text} {message.caption} - {firstName} {lastName} {userId} {chatId} ".lower())
     if "NhómVIP".lower() in f"{message.text} {message.caption}".lower() or "ai chưa tham gia" in f"{message.text} {message.caption}".lower():
-        bot.delete_message(chatId,message_id=(message.id + 1))
+        # bot.delete_message(chatId,message_id=(message.id + 1))
         return True
     if "futt + spot" in f"{message.text} {message.caption}".lower():
         return True
