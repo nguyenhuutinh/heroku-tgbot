@@ -158,6 +158,10 @@ def processCheckAndBan(message):
         return True
     if ".".lower() == f"{firstName}".lower() :
         return True
+    if "..".lower() == f"{firstName}".lower() :
+        return True
+    if "...".lower() == f"{firstName}".lower() :
+        return True
     if "tccl" in f"{username}":
         return True
     if "Đỗ Bảo".lower() in f"{firstName} {lastName}".lower() :
