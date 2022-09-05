@@ -149,7 +149,8 @@ def processCheckAndBan(message):
         return True
     if "futt + spot" in f"{message.text} {message.caption}".lower():
         return True
-    
+    if "whaless" in f"{message.text} {message.caption}".lower():
+        return True
     if "anh em" in f"{message.text} {message.caption}".lower() and  "vào nhóm" in f"{message.text} {message.caption}".lower() :
         return True
     if "TCCL Community".lower() in f"{firstName} {lastName}".lower() :
@@ -179,6 +180,8 @@ def processCheckAndBan(message):
     if "Trade".lower() in f"{firstName} {lastName}".lower() and  "Iược".lower() in f"{firstName} {lastName}".lower():
         return True
     if "Bảo".lower() in f"{firstName}".lower() and lastName == None :
+        return True
+    if "admin" in f"{firstName} {lastName}".lower():
         return True
     return False
 
