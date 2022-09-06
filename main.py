@@ -190,11 +190,12 @@ def banUser(message):
     chatId = message.chat.id
     firstName = message.from_user.first_name
     lastName = message.from_user.last_name
-    
+    username = message.from_user.username
+
     bot.reply_to(message, "🧞‍♂️ ‼️ User: " + firstName + " sử dụng message bị cấm. Mời ra đảo du lịch không hẹn ngày về ‼️ 🧞‍♂️")
     bot.delete_message(chatId,message_id=message.id)
     bot.ban_chat_member(chatId, userId)
-    bot.send_message("-1001349899890", "Reported user id: " + str(userId) + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}" + f" - message: {message.id} {message.text} " + f" - caption: {message.caption}")
+    bot.send_message("-1001349899890", "Reported user id: " + str(userId) + " - " + str(username)  + " - firstName: "+ f"{firstName}" + " - lastname: "+ f"{lastName}" + f" - message: {message.id} {message.text} " + f" - caption: {message.caption}")
 
 # @bot.message_handler(commands=['list'])
 # def _list(message):
